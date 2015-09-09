@@ -43,6 +43,11 @@ describe("Product component", ->
   
   it("should render list of products", ->
     products = TestUtils.scryRenderedComponentsWithType(@RenderedProducts, @Components.Product)
+    expect(products[0].getDOMNode().textContent).toMatch(@productsList[0].title)
+    expect(products[1].getDOMNode().textContent).toMatch(@productsList[1].title)
+    expect(products[2].getDOMNode().textContent).toMatch(@productsList[2].title)
     expect(products.length).toEqual(@productsList.length)
   )
+
+
 )

@@ -1,11 +1,13 @@
-HomeComponent = require("./components/Home.cjsx")
+App = require("./components/App.cjsx")
 React = require("react")
 Fluxxor = require("fluxxor")
 ShoppingCartActions = require("./actions/ShoppingCartActions.cjsx")
-ShoppingCartStore = require("./stores/ShoppingCartStore.cjsx")
+CartStore = require("./stores/CartStore.cjsx")
+ProductsStore = require("./stores/ProductsStore.cjsx")
 
 stores = {
-  ShoppingCartStore: new ShoppingCartStore()
+  CartStore: new CartStore()
+  ProductsStore: new ProductsStore()
 }
 
 flux = new Fluxxor.Flux(stores, ShoppingCartActions);
@@ -16,6 +18,6 @@ flux = new Fluxxor.Flux(stores, ShoppingCartActions);
 # )
 
 React.render(
-  <HomeComponent flux={flux} />,
+  <App flux={flux} />,
   document.getElementById('reactApp')
 )

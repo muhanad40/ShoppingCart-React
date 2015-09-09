@@ -6,7 +6,7 @@ ProductsComponent = React.createClass
   render: ->
     productComponents = @props.products.map((product)=>
       return (
-        <div><Product key={product.id} details={product} /></div>
+        <Product key={product.id} details={product} />
       )
     )
     return (

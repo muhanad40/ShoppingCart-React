@@ -2,11 +2,9 @@ React = require("react/addons")
 Fluxxor = require("fluxxor")
 TestUtils = React.addons.TestUtils
 
-AppPath = "../../app/"
-
-ShoppingCartActions = require("#{AppPath}actions/ShoppingCartActions.cjsx")
-ProductsStore = require("#{AppPath}stores/ProductsStore.cjsx")
-CartStore = require("#{AppPath}stores/CartStore.cjsx")
+ShoppingCartActions = require("../../app/actions/ShoppingCartActions.cjsx")
+ProductsStore = require("../../app/stores/ProductsStore.cjsx")
+CartStore = require("../../app/stores/CartStore.cjsx")
 stores = {
   CartStore: new CartStore()
   ProductsStore: new ProductsStore()
@@ -19,8 +17,8 @@ describe("Product component", ->
   beforeEach(->
 
     @Components = {
-      "Products": require("#{AppPath}components/Products.cjsx")
-      "Product": require("#{AppPath}components/Product.cjsx")
+      "Products": require("../../app/components/Products.cjsx")
+      "Product": require("../../app/components/Product.cjsx")
     }
 
     @productsList = [

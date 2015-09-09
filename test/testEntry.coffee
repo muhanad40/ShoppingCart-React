@@ -1,1 +1,1 @@
-require("./ProductsSpec.cjsx")
+require("./spec/ProductsSpec.cjsx")

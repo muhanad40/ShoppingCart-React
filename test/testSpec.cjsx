@@ -1,6 +1,4 @@
 React = require("react/addons")
-Products = require("../app/components/Products.cjsx")
-Product = require("../app/components/Product.cjsx")
 Fluxxor = require("fluxxor")
 TestUtils = React.addons.TestUtils
 
@@ -13,10 +11,16 @@ stores = {
 }
 flux = new Fluxxor.Flux(stores, ShoppingCartActions);
 
-describe("App", ->
+describe("Product component", ->
   AppComponent = null
 
   beforeEach(->
+
+    @Components = {
+      "Products": require("../app/components/Products.cjsx")
+      "Product": require("../app/components/Product.cjsx")
+    }
+
     @productsList = [
       {
         id: 18
@@ -34,11 +38,11 @@ describe("App", ->
         categoryId: 6
       }
     ]
-    Products = TestUtils.renderIntoDocument(<Products products={@productsList} />)
+    @RenderedProducts = TestUtils.renderIntoDocument(<@Components.Products products={@productsList} />)
   )
   
   it("should render list of products", ->
-    products = TestUtils.scryRenderedComponentsWithType(Products, Product)
+    products = TestUtils.scryRenderedComponentsWithType(@RenderedProducts, @Components.Product)
     expect(products.length).toEqual(@productsList.length)
   )
 )

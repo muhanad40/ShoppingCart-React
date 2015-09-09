@@ -10,6 +10,10 @@ CartStore = Fluxxor.createStore({
     )
 
   addItem: (payload) ->
+    @cart.push({
+      product: payload.product
+      quantity: 1
+    })
     @emit("change")
 
   getState: ->

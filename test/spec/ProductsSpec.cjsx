@@ -9,7 +9,7 @@ stores = {
   CartStore: new CartStore()
   ProductsStore: new ProductsStore()
 }
-flux = new Fluxxor.Flux(stores, ShoppingCartActions);
+flux = new Fluxxor.Flux(stores, ShoppingCartActions)
 
 describe("Product component", ->
   AppComponent = null
@@ -49,5 +49,20 @@ describe("Product component", ->
     expect(products.length).toEqual(@productsList.length)
   )
 
-
+  it("should add a product to the cart", ->
+    flux.actions.addItemToCart(@productsList[0])
+    flux.actions.addItemToCart(@productsList[2])
+    expectedCartItems = [
+      {
+        product: @productsList[0]
+        quantity: 1
+      }
+      {
+        product: @productsList[2]
+        quantity: 1
+      }
+    ]
+    cartItems = stores.CartStore.getState().cart
+    expect(cartItems).toEqual(expectedCartItems)
+  )
 )

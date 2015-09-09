@@ -1,5 +1,5 @@
 module.exports = {
-  entry: "./testSpec.cjsx",
+  entry: "./testEntry.coffee",
   output: {
     filename: "test.js"
   },

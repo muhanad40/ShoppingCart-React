@@ -71,4 +71,14 @@ describe("CartStore", ->
     expect(cartItems).toEqual(expectedCartItems)
   )
 
+  it("should return total number of items in the cart", ->
+    flux.actions.addItemToCart(testProductsList[0])
+    flux.actions.addItemToCart(testProductsList[1])
+    flux.actions.addItemToCart(testProductsList[2])
+    flux.actions.addItemToCart(testProductsList[2])
+    expectedTotalCartItems = 4
+    totalCartItems = stores.CartStore.getTotalItems()
+    expect(totalCartItems).toEqual(expectedTotalCartItems)
+  )
+
 )

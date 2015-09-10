@@ -35,6 +35,8 @@ CartStore = Fluxxor.createStore({
     totalItems = _.reduce(cartQuantities, (total, num)->
       return total + num
     )
+    if totalItems == undefined
+      totalItems = 0
     return totalItems
 
   getState: ->

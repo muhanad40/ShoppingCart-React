@@ -1,8 +1,8 @@
 constants = require("../constants/ShoppingCartConstants.cjsx")
 
-ShoppingCartActions = {
+CartActions = {
   addItemToCart: (product)->
     @dispatch(constants.ADD_ITEM, {product: product})
 }
 
-module.exports = ShoppingCartActions
+module.exports = CartActions

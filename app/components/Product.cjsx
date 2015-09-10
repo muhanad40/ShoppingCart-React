@@ -1,9 +1,21 @@
 React = require('react')
+Fluxxor = require("fluxxor")
+FluxMixin = Fluxxor.FluxMixin(React)
+StoreWatchMixin = Fluxxor.StoreWatchMixin
 
 ProductComponent = React.createClass
 
+  mixins: [FluxMixin, StoreWatchMixin("CartStore")],
+
+  getStateFromFlux: ->
+    flux = @getFlux()
+    return {
+      CartStore: flux.store("CartStore").getState()
+      ProductsStore: flux.store("ProductsStore").getState()
+    }
+
   addToCart: (product)->
-    @flux.actions.addItemToCart(product)
+    @getFlux().actions.addItemToCart(product)
 
   render: ->
     return (

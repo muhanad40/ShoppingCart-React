@@ -1,6 +1,5 @@
 module.exports = {
-  context: __dirname + "/app",
-  entry: "./app.cjsx",
+  entry: __dirname + "/app/app.cjsx",
   output: {
     path: __dirname + "/dist",
     filename: "bundle.js"

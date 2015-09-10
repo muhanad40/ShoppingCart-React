@@ -1,6 +1,7 @@
 module.exports = {
-  entry: "./testEntry.coffee",
+  entry: __dirname + "/testEntry.coffee",
   output: {
+    path: __dirname,
     filename: "testBundle.js"
   },
   module: {

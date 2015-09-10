@@ -28,7 +28,8 @@ CartStore = Fluxxor.createStore({
     @emit("change")
 
   getTotalItems: ->
-    cartQuantities = _.map(@cart, (obj)->
+    cart = @getState().cart
+    cartQuantities = _.map(cart, (obj)->
       return obj.quantity
     )
     totalItems = _.reduce(cartQuantities, (total, num)->

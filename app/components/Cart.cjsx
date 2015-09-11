@@ -6,7 +6,7 @@ Products = require("./Products.cjsx")
 FluxMixin = Fluxxor.FluxMixin(React)
 StoreWatchMixin = Fluxxor.StoreWatchMixin
 
-Home = React.createClass
+Cart = React.createClass
   mixins: [FluxMixin, StoreWatchMixin("CartStore")]
 
   getTotalCartItems: ->
@@ -30,4 +30,4 @@ Home = React.createClass
     )
 
 
-module.exports = Home
+module.exports = Cart

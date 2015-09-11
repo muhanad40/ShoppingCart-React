@@ -12,11 +12,11 @@ Route = Router.Route;
 
 routes = (
   <Route handler={App} path="/">
-    <Route handler={Home} />
+    <Route path="/" handler={Home} />
     <Route path="/cart" handler={Cart} />
   </Route>
 )
 
-Router.run(routes, Router.HistoryLocation, (Handler)->
+Router.run(routes, (Handler)->
   React.render(<Handler />, document.getElementById('reactApp'));
 )

@@ -6,11 +6,11 @@ CartStore = Fluxxor.createStore({
   initialize: ->
     @items = []
     @bindActions(
-      constants.ADD_ITEM, @addItem
-      constants.REMOVE_ITEM, @removeItem
+      constants.ADD_ITEM, @_addItem
+      constants.REMOVE_ITEM, @_removeItem
     )
 
-  addItem: (payload) ->
+  _addItem: (payload) ->
     product = payload.product
     # find the product inside the cart
     cartProduct = _.find(@items, (cartItem)->
@@ -40,12 +40,19 @@ CartStore = Fluxxor.createStore({
       totalItems = 0
     return totalItems
 
-  removeItem: (payload) ->
+  _removeItem: (payload) ->
     productId = payload.productId
     items = @items
     @items = _.reject(items, (obj)->
       return obj.product.id == productId
     )
+
+  getTotalCost: ->
+    items = @getState().items
+    total = 0
+    for item in items
+      total += item.product.price * item.quantity
+    return total
 
   getState: ->
     return {

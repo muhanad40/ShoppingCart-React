@@ -16,16 +16,19 @@ testProductsList = [
     id: 18
     title: "Prod 1"
     categoryId: 1
+    price: 2.45
   }
   {
     id: 45
     title: "Prod 2"
     categoryId: 2
+    price: 4.99
   }
   {
     id: 56
     title: "Prod 3"
     categoryId: 6
+    price: 9
   }
 ]
 
@@ -106,6 +109,27 @@ describe("CartStore", ->
     flux.actions.removeItemFromCart(productIdToRemove)
     totalCartItems = stores.CartStore.getTotalItems()
     expect(totalCartItems).toEqual(expectedTotalCartItems)
+  )
+
+  it("should calculate the total cost of the items", ->
+    cartItems = [
+      {
+        quantity: 1
+        product: testProductsList[0]
+      }
+      {
+        quantity: 3
+        product: testProductsList[1]
+      }
+      {
+        quantity: 2
+        product: testProductsList[2]
+      }
+    ]
+    stores.CartStore.items = cartItems
+    expectedCartTotalCost = 35.42
+    totalCartItems = stores.CartStore.getTotalCost()
+    expect(totalCartItems).toEqual(expectedCartTotalCost)
   )
 
 )

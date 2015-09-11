@@ -12,6 +12,10 @@ Home = React.createClass
   getTotalCartItems: ->
     flux = @getFlux()
     return flux.store("CartStore").getTotalItems()
+
+  getTotalCost: ->
+    flux = @getFlux()
+    return flux.store("CartStore").getTotalCost()
   
   getStateFromFlux: ->
     flux = @getFlux()
@@ -23,7 +27,7 @@ Home = React.createClass
   render: ->
     return (
       <div>
-        <h3>Cart: {@getTotalCartItems()} - <a href="/cart">View cart</a></h3>
+        <h3>Cart: {@getTotalCartItems()} (&pound;{@getTotalCost()}) - <a href="/cart">View cart</a></h3>
         <h3>Products:</h3>
         <Products products={@state.ProductsStore.products} />
       </div>

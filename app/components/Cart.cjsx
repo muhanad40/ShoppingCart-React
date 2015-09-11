@@ -1,7 +1,6 @@
 React = require('react')
 Fluxxor = require("fluxxor")
-Product = require("./Product.cjsx")
-Products = require("./Products.cjsx")
+CartItems = require("./CartItems.cjsx")
 
 FluxMixin = Fluxxor.FluxMixin(React)
 StoreWatchMixin = Fluxxor.StoreWatchMixin
@@ -23,9 +22,9 @@ Cart = React.createClass
   render: ->
     return (
       <div>
-        <h3>Cart: {@getTotalCartItems()} - <a href="/cart">View cart</a></h3>
-        <h3>Products:</h3>
-        <Products products={@state.ProductsStore.products} />
+        <h3>Shopping Cart</h3>
+        <h3>Items:</h3>
+        <CartItems items={@state.CartStore.items} />
       </div>
     )
 

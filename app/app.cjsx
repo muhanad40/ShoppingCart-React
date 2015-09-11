@@ -1,4 +1,5 @@
 App = require("./components/App.cjsx")
+Cart = require("./components/Cart.cjsx")
 Home = require("./components/Home.cjsx")
 React = require("react")
 Router = require("react-router")
@@ -12,6 +13,7 @@ Route = Router.Route;
 routes = (
   <Route handler={App} path="/">
     <Route handler={Home} />
+    <Route path="/cart" handler={Cart} />
   </Route>
 )
 

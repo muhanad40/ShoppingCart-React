@@ -8,9 +8,9 @@ StoreWatchMixin = Fluxxor.StoreWatchMixin
 Cart = React.createClass
   mixins: [FluxMixin, StoreWatchMixin("CartStore")]
 
-  getTotalCartItems: ->
+  getTotalCost: ->
     flux = @getFlux()
-    return flux.store("CartStore").getTotalItems()
+    return flux.store("CartStore").getTotalCost()
   
   getStateFromFlux: ->
     flux = @getFlux()
@@ -25,6 +25,8 @@ Cart = React.createClass
         <h3>Shopping Cart</h3>
         <h3>Items:</h3>
         <CartItems items={@state.CartStore.items} />
+        <br/>
+        <strong>Sub-total:</strong> &pound;{@getTotalCost()}
       </div>
     )
 

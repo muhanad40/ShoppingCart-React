@@ -4,7 +4,7 @@ _ = require("underscore")
 
 CartStore = Fluxxor.createStore({
   initialize: ->
-    @cart = []
+    @items = []
     @bindActions(
       constants.ADD_ITEM, @addItem
     )
@@ -12,7 +12,7 @@ CartStore = Fluxxor.createStore({
   addItem: (payload) ->
     product = payload.product
     # find the product inside the cart
-    cartProduct = _.find(@cart, (cartItem)->
+    cartProduct = _.find(@items, (cartItem)->
       return cartItem.product.id == product.id
     )
     # product already added?
@@ -21,15 +21,15 @@ CartStore = Fluxxor.createStore({
       cartProduct.quantity += 1
     else
       # otherwise, add it
-      @cart.push({
+      @items.push({
         product: product
         quantity: 1
       })
     @emit("change")
 
   getTotalItems: ->
-    cart = @getState().cart
-    cartQuantities = _.map(cart, (obj)->
+    items = @getState().items
+    cartQuantities = _.map(items, (obj)->
       return obj.quantity
     )
     totalItems = _.reduce(cartQuantities, (total, num)->
@@ -41,7 +41,7 @@ CartStore = Fluxxor.createStore({
 
   getState: ->
     return {
-      cart: @cart
+      items: @items
     }
 })
 

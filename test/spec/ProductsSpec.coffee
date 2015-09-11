@@ -33,7 +33,7 @@ describe("CartStore", ->
 
   beforeEach(->
     # empty the cart
-    stores.CartStore.cart = []
+    stores.CartStore.items = []
   )
 
   it("should add a product to the cart", ->
@@ -49,7 +49,7 @@ describe("CartStore", ->
         quantity: 1
       }
     ]
-    cartItems = stores.CartStore.getState().cart
+    cartItems = stores.CartStore.getState().items
     expect(cartItems).toEqual(expectedCartItems)
   )
 
@@ -67,7 +67,7 @@ describe("CartStore", ->
         quantity: 2
       }
     ]
-    cartItems = stores.CartStore.getState().cart
+    cartItems = stores.CartStore.getState().items
     expect(cartItems).toEqual(expectedCartItems)
   )
 

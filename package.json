@@ -19,7 +19,9 @@
     "webpack-dev-server": "^1.10.1"
   },
   "dependencies": {
+    "express": "^4.13.3",
     "fluxxor": "^1.7.1",
-    "react": "^0.13.3"
+    "react": "^0.13.3",
+    "react-router": "^0.13.3"
   }
 }

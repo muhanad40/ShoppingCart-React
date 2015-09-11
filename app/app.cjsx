@@ -1,5 +1,8 @@
-App = require("./components/App.cjsx")
+Home = require("./components/Home.cjsx")
 React = require("react")
+Router = require("react-router")
+Route = Router.Route;
+RouteHandler = Router.RouteHandler
 Fluxxor = require("fluxxor")
 CartActions = require("./actions/CartActions.cjsx")
 CartStore = require("./stores/CartStore.cjsx")
@@ -17,7 +20,20 @@ flux = new Fluxxor.Flux(stores, CartActions);
 #     console.log("[Dispatch]", type, payload)
 # )
 
-React.render(
-  <App flux={flux} />,
-  document.getElementById('reactApp')
+App = React.createClass
+  render:->
+    return (
+      <div>
+        <RouteHandler flux={flux} />
+      </div>
+    )
+
+routes = (
+  <Route handler={App} path="/">
+    <Route handler={Home} />
+  </Route>
+)
+
+Router.run(routes, Router.HistoryLocation, (Handler)->
+  React.render(<Handler />, document.getElementById('reactApp'));
 )

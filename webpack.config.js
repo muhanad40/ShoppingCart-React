@@ -1,7 +1,7 @@
 module.exports = {
   entry: __dirname + "/app/app.cjsx",
   output: {
-    path: __dirname + "/dist",
+    path: __dirname + "/public",
     filename: "bundle.js"
   },
   resolveLoader: {

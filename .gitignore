@@ -2,3 +2,4 @@
 node_modules
 test/testBundle.js
 dist
+server.js

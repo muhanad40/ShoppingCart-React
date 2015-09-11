@@ -1,5 +1,4 @@
 Fluxxor = require("fluxxor")
-constants = require("../constants/ShoppingCartConstants.cjsx")
 
 ProductsStore = Fluxxor.createStore({
   initialize: ->

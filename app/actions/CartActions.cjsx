@@ -7,6 +7,8 @@ CartActions = {
     @dispatch(constants.REMOVE_ITEM, {productId: productId})
   addVoucherToCart: (voucher)->
     @dispatch(constants.ADD_VOUCHER, {voucher: voucher})
+  removeVoucherFromCart: (voucher)->
+    @dispatch(constants.REMOVE_VOUCHER, {voucher: voucher})
 }
 
 module.exports = CartActions

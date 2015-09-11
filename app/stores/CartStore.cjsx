@@ -1,5 +1,6 @@
 Fluxxor = require("fluxxor")
 constants = require("../constants/ShoppingCartConstants.cjsx")
+VoucherStore = require("../stores/VoucherStore.cjsx")
 _ = require("underscore")
 
 CartStore = Fluxxor.createStore({
@@ -43,6 +44,7 @@ initialize: ->
       constants.ADD_ITEM, @_addItem
       constants.REMOVE_ITEM, @_removeItem
       constants.ADD_VOUCHER, @_addVoucher
+      constants.REMOVE_VOUCHER, @_removeVoucher
     )
 
   _addItem: (payload) ->
@@ -85,9 +87,20 @@ initialize: ->
 
   _addVoucher: (payload)->
     voucher = payload.voucher
-    vouchers = @getState().vouchers
-    if voucher not in vouchers
-      vouchers.push(voucher)
+    appliedVouchers = @getState().vouchers
+    voucherStore = new VoucherStore()
+    findVoucher = _.where(voucherStore.vouchers, {code: voucher})
+    if voucher not in appliedVouchers and findVoucher.length > 0
+      appliedVouchers.push(voucher)
+    @emit("change")
+
+  _removeVoucher: (payload)->
+    voucher = payload.voucher
+    appliedVouchers = @getState().vouchers
+    newVouchersList = _.reject(appliedVouchers, (appliedVoucher)->
+      return appliedVoucher == voucher
+    )
+    @vouchers = newVouchersList
     @emit("change")
 
   getTotalCost: ->

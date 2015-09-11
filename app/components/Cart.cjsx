@@ -1,6 +1,7 @@
 React = require('react')
 Fluxxor = require("fluxxor")
 CartItems = require("./CartItems.cjsx")
+Vouchers = require("./Vouchers.cjsx")
 
 FluxMixin = Fluxxor.FluxMixin(React)
 StoreWatchMixin = Fluxxor.StoreWatchMixin
@@ -19,6 +20,16 @@ Cart = React.createClass
       ProductsStore: flux.store("ProductsStore").getState()
     }
 
+  handleVoucherFormChange: (event)->
+    @setState({
+      newVoucher: event.target.value
+    })
+
+  submitVoucher: (e)->
+    e.preventDefault()
+    @getFlux().actions.addVoucherToCart(@state.newVoucher)
+    @setState({newVoucher: ""})
+
   render: ->
     return (
       <div>
@@ -33,11 +44,11 @@ Cart = React.createClass
         <br/><br/>
 
         <strong>Vouchers:</strong>
-        <form>
-          <input type="text" />
-          <input type="submit" value="Apply Voucher" />
+        <form onSubmit={@submitVoucher}>
+          <input type="text" value={@state.newVoucher} onChange={@handleVoucherFormChange} />
+          <input type="submit" value="Apply Voucher" onClick={@submitVoucher} />
         </form>
-        Voucher name goes here
+        <Vouchers />
         <br/><br/>
 
         <strong>Total:</strong> &pound;{@getTotalCost()}

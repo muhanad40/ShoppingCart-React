@@ -81,4 +81,31 @@ describe("CartStore", ->
     expect(totalCartItems).toEqual(expectedTotalCartItems)
   )
 
+  it("should remove an item from the cart", ->
+    cartItems = [
+      {
+        quantity: 1
+        product: testProductsList[0]
+      }
+      {
+        quantity: 1
+        product: testProductsList[1]
+      }
+      {
+        quantity: 1
+        product: testProductsList[2]
+      }
+      {
+        quantity: 1
+        product: testProductsList[2]
+      }
+    ]
+    stores.CartStore.items = cartItems
+    productIdToRemove = testProductsList[2].id
+    expectedTotalCartItems = 2
+    flux.actions.removeItemFromCart(productIdToRemove)
+    totalCartItems = stores.CartStore.getTotalItems()
+    expect(totalCartItems).toEqual(expectedTotalCartItems)
+  )
+
 )

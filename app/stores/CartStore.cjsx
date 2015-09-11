@@ -7,6 +7,7 @@ CartStore = Fluxxor.createStore({
     @items = []
     @bindActions(
       constants.ADD_ITEM, @addItem
+      constants.REMOVE_ITEM, @removeItem
     )
 
   addItem: (payload) ->
@@ -38,6 +39,13 @@ CartStore = Fluxxor.createStore({
     if totalItems == undefined
       totalItems = 0
     return totalItems
+
+  removeItem: (payload) ->
+    productId = payload.productId
+    items = @items
+    @items = _.reject(items, (obj)->
+      return obj.product.id == productId
+    )
 
   getState: ->
     return {

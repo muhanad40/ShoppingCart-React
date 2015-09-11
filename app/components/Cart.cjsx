@@ -25,8 +25,23 @@ Cart = React.createClass
         <h3>Shopping Cart</h3>
         <h3>Items:</h3>
         <CartItems items={@state.CartStore.items} />
+
         <br/>
+
         <strong>Sub-total:</strong> &pound;{@getTotalCost()}
+
+        <br/><br/>
+
+        <strong>Vouchers:</strong>
+        <form>
+          <input type="text" />
+          <input type="submit" value="Apply Voucher" />
+        </form>
+        Voucher name goes here
+        <br/><br/>
+
+        <strong>Total:</strong> &pound;{@getTotalCost()}
+
       </div>
     )
 

@@ -37,6 +37,7 @@ describe("CartStore", ->
   beforeEach(->
     # empty the cart
     stores.CartStore.items = []
+    stores.CartStore.vouchers = []
   )
 
   it("should add a product to the cart", ->
@@ -130,6 +131,21 @@ describe("CartStore", ->
     expectedCartTotalCost = 35.42
     totalCartItems = stores.CartStore.getTotalCost()
     expect(totalCartItems).toEqual(expectedCartTotalCost)
+  )
+
+  it("should add a voucher to the cart", ->
+    voucher = "DELOITTE2015"
+    flux.actions.addVoucherToCart(voucher)
+    cartVouchers = stores.CartStore.getState().vouchers
+    expect(cartVouchers).toEqual([voucher])
+  )
+
+  it("should add a voucher to the cart only once", ->
+    voucher = "DELOITTE2015"
+    flux.actions.addVoucherToCart(voucher)
+    flux.actions.addVoucherToCart(voucher)
+    cartVouchers = stores.CartStore.getState().vouchers
+    expect(cartVouchers).toEqual([voucher])
   )
 
 )

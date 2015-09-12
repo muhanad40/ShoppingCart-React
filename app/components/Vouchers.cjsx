@@ -1,7 +1,6 @@
 React = require('react')
 VoucherItem = require("./VoucherItem.cjsx")
 Fluxxor = require("fluxxor")
-CartItems = require("./CartItems.cjsx")
 
 FluxMixin = Fluxxor.FluxMixin(React)
 StoreWatchMixin = Fluxxor.StoreWatchMixin
@@ -18,9 +17,9 @@ Voucher = React.createClass
     }
 
   render: ->
-    voucherComponents = @state.CartStore.vouchers.map((voucher)=>
+    voucherComponents = @state.CartStore.vouchers.map((voucher, index)=>
       return (
-        <VoucherItem data={voucher} />
+        <VoucherItem key={index} data={voucher} />
       )
     )
     return (

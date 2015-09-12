@@ -29,11 +29,9 @@ Home = React.createClass
     return (
       <div className="col-xs-10">
         <h3>Products:</h3>
-        <div className="container">
           <div className="row">
             <Products products={products} />
           </div>
-        </div>
       </div>
     )
 

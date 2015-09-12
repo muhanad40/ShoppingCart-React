@@ -1,6 +1,5 @@
 React = require('react')
 Fluxxor = require("fluxxor")
-CartItems = require("./CartItems.cjsx")
 Vouchers = require("./Vouchers.cjsx")
 
 FluxMixin = Fluxxor.FluxMixin(React)
@@ -29,6 +28,11 @@ Cart = React.createClass
       newVoucher: event.target.value
     })
 
+  removeItem: (item, e)->
+    e.preventDefault()
+    flux = @getFlux()
+    flux.actions.removeItemFromCart(item.product.id)
+
   submitVoucher: (e)->
     e.preventDefault()
     @setState({voucherError: null})
@@ -42,31 +46,59 @@ Cart = React.createClass
 
   render: ->
     if @state.voucherError
-      voucherError = <div>{@state.voucherError}</div>
+      voucherError = <div className="alert alert-danger">{@state.voucherError}</div>
+
+    cartItems = @state.CartStore.items.map((cartItem, index)=>
+      return (
+        <tr key={index}>
+          <td>
+            {cartItem.product.title}<br/>
+            <a href="#" onClick={@removeItem.bind(@, cartItem)}>Remove</a>
+          </td>
+          <td>{cartItem.quantity}</td>
+          <td className="text-right">&pound;{parseFloat(cartItem.quantity * cartItem.product.price).toFixed(2)/1}</td>
+        </tr>
+      )
+    )
     return (
       <div className="col-xs-10">
         <h3>Shopping Cart</h3>
-        <h3>Items:</h3>
-        <CartItems items={@state.CartStore.items} />
-
         <br/>
-
-        <strong>Sub-total:</strong> &pound;{@getSubTotalCost()}
-
-        <br/><br/>
-
-        <strong>Vouchers:</strong>
-        {voucherError}
-        <Vouchers />
-        <form onSubmit={@submitVoucher}>
-          <input type="text" value={@state.newVoucher} onChange={@handleVoucherFormChange} />
-          <input type="submit" value="Apply Voucher" onClick={@submitVoucher} />
-        </form>
-        <br/>
-        <strong>Total:</strong> &pound;{@getTotalCost()}
-
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th className="text-right">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cartItems}
+            <tr>
+              <td className="text-right" colSpan="2"><strong>Sub-total:</strong></td>
+              <td className="text-right">&pound;{@getSubTotalCost()}</td>
+            </tr>
+            <tr>
+              <td colSpan="3">
+                <strong>Discount vouchers:</strong>
+                {voucherError}
+                <Vouchers />
+                <form className="form-inline" onSubmit={@submitVoucher}>
+                  <input type="text" className="form-control" value={@state.newVoucher} onChange={@handleVoucherFormChange} />
+                  &nbsp;<input type="submit" className="btn btn-primary" value="Apply Voucher" onClick={@submitVoucher} />
+                </form>
+              </td>
+            </tr>
+            <tr>
+              <td className="text-right" colSpan="2"><strong>Total:</strong></td>
+              <td className="text-right">&pound;{@getTotalCost()}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div className="text-right">
+          <a href="#" className="btn btn-primary btn-lg">Pay</a>
+        </div>
       </div>
     )
-
 
 module.exports = Cart

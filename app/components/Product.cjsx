@@ -14,18 +14,21 @@ ProductComponent = React.createClass
       ProductsStore: flux.store("ProductsStore").getState()
     }
 
-  addToCart: (product)->
+  addToCart: (product, e)->
+    e.preventDefault()
     @getFlux().actions.addItemToCart(product)
 
   render: ->
     if @props.details.stock > 0
       addToCartBtn = <a href="#" className="btn btn-primary" onClick={@addToCart.bind(@, @props.details)}>Add to Cart</a>
     return (
-      <div className="col-xs-4 panel panel-default" id={"product-"+@props.details.id}>
-        <div className="panel-body">
-          <h3>{@props.details.title}</h3>
-          <h4><span className="label label-default">&pound;{@props.details.price}</span></h4>
-          {addToCartBtn}
+      <div className="col-xs-4">
+        <div className="panel panel-default" id={"product-"+@props.details.id}>
+          <div className="panel-body">
+            <h3>{@props.details.title}</h3>
+            <h4><span className="label label-default">&pound;{@props.details.price}</span></h4>
+            {addToCartBtn}
+          </div>
         </div>
       </div>
     )

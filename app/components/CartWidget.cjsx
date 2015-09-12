@@ -26,7 +26,7 @@ CartWidget = React.createClass
   render: ->
     return (
       <div className="navbar-text">
-        <strong>Cart:</strong> {@getTotalCartItems()} items (&pound;{@getSubTotalCost()}) - <a href="/#/cart">View cart</a>
+        <strong>Cart:</strong> {@getTotalCartItems()} items (&pound;{@getSubTotalCost()}) - <a data-toggle="collapse" data-target="#categoriesMenu" href="/#/cart">View cart</a>
       </div>
     )
 

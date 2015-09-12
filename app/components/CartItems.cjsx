@@ -4,9 +4,9 @@ CartItem = require("./CartItem.cjsx")
 CartItems = React.createClass
 
   render: ->
-    cartItems = @props.items.map((cartItem)=>
+    cartItems = @props.items.map((cartItem, index)=>
       return (
-        <CartItem item={cartItem} />
+        <CartItem key={index} item={cartItem} />
       )
     )
     return (

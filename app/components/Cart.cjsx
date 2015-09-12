@@ -44,7 +44,7 @@ Cart = React.createClass
     if @state.voucherError
       voucherError = <div>{@state.voucherError}</div>
     return (
-      <div>
+      <div className="col-xs-10">
         <h3>Shopping Cart</h3>
         <h3>Items:</h3>
         <CartItems items={@state.CartStore.items} />

@@ -291,4 +291,36 @@ describe("CartStore", ->
     expect(stores.CartStore.getTotalCost()).toEqual(expectedCartTotalCost)
   )
 
+  # it("should add product to the cart with quantity no more than its available stock", ->
+  #   expect(false).toEqual(true)
+  # )
+
+)
+
+describe("ProductsStore", ->
+
+  it("should filter products by category ID", ->
+    stores.ProductsStore.products = testProductsList
+    filterCategoryId = 2
+    flux.actions.filterProducts(filterCategoryId)
+    expectedProductsList = [
+      {
+        id: 45
+        title: "Prod 2"
+        categoryId: 2
+        price: 4.99
+      }
+    ]
+    productsList = stores.ProductsStore.getState().products
+    expect(productsList).toEqual(expectedProductsList)
+  )
+
+  it("should return empty list if no product is found in a given category", ->
+    stores.ProductsStore.products = testProductsList
+    filterCategoryId = 4563
+    flux.actions.filterProducts(filterCategoryId)
+    productsList = stores.ProductsStore.getState().products
+    expect(productsList).toEqual([])
+  )
+  
 )

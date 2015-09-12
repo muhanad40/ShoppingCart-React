@@ -1,4 +1,6 @@
 Fluxxor = require("fluxxor")
+constants = require("../constants/ShoppingCartConstants.cjsx")
+_ = require("underscore")
 
 ProductsStore = Fluxxor.createStore({
   initialize: ->
@@ -26,16 +28,37 @@ ProductsStore = Fluxxor.createStore({
       }
       {
           id: 4
-          title: "Out of stock item"
+          title: "Product 4"
           categoryId: 3
           price: 9
           stock: 0
       }
     ]
+    @filteredProducts = []
+    @filteredMode = false
+    @bindActions(
+      constants.FILTER_PRODUCTS, @_filterProducts
+      constants.RESET_PRODUCTS_LISTING, @_resetProductsListing
+    )
+
+  _filterProducts: (payload)->
+    categoryId = parseInt(payload.categoryId)
+    @filteredMode = true
+    @filteredProducts = _.filter(@products, (productObj)->
+      return productObj.categoryId == categoryId
+    )
+    @emit("change")
+
+  _resetProductsListing: ->
+    @filteredMode = false
 
   getState: ->
+    if @filteredMode == true
+      products = @filteredProducts
+    else
+      products = @products
     return {
-      products: @products
+      products: products
     }
 })
 

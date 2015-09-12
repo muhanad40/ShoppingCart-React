@@ -1,12 +1,11 @@
 React = require('react')
 Fluxxor = require("fluxxor")
-Product = require("./Product.cjsx")
-Products = require("./Products.cjsx")
 
 FluxMixin = Fluxxor.FluxMixin(React)
 StoreWatchMixin = Fluxxor.StoreWatchMixin
 
-Home = React.createClass
+CartWidget = React.createClass
+
   mixins: [FluxMixin, StoreWatchMixin("CartStore")]
 
   getTotalCartItems: ->
@@ -21,21 +20,14 @@ Home = React.createClass
     flux = @getFlux()
     return {
       CartStore: flux.store("CartStore").getState()
+      ProductsStore: flux.store("ProductsStore").getState()
     }
 
   render: ->
-    flux = @getFlux()
-    products = flux.store("ProductsStore").getState().products
     return (
-      <div className="col-xs-10">
-        <h3>Products:</h3>
-        <div className="container">
-          <div className="row">
-            <Products products={products} />
-          </div>
-        </div>
+      <div className="navbar-text">
+        <strong>Cart:</strong> {@getTotalCartItems()} items (&pound;{@getSubTotalCost()}) - <a href="/#/cart">View cart</a>
       </div>
     )
 
-
-module.exports = Home
+module.exports = CartWidget

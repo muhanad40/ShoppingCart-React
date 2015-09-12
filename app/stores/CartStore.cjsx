@@ -55,14 +55,18 @@ CartStore = Fluxxor.createStore({
     )
     # product already added?
     if cartProduct
-      # increment quantity
-      cartProduct.quantity += 1
+      # only add if there's enough stock
+      if cartProduct.quantity < cartProduct.product.stock
+        # increment quantity
+        cartProduct.quantity += 1
     else
       # otherwise, add it
-      @items.push({
-        product: product
-        quantity: 1
-      })
+      # enough stock? add it
+      if product.stock > 0
+        @items.push({
+          product: product
+          quantity: 1
+        })
     @emit("change")
 
   getTotalItems: ->

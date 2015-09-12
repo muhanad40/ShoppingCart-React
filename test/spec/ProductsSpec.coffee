@@ -20,25 +20,28 @@ testProductsList = [
     title: "Prod 1"
     categoryId: 1
     price: 2.45
+    stock: 2
   }
   {
     id: 45
     title: "Prod 2"
     categoryId: 2
     price: 4.99
+    stock: 4
   }
   {
     id: 56
     title: "Prod 3"
     categoryId: 6
     price: 9
+    stock: 10
   }
 ]
 
 describe("CartStore", ->
 
   beforeEach(->
-    # empty the cart
+    stores.ProductsStore.products = testProductsList
     stores.CartStore.items = []
     stores.CartStore.vouchers = []
   )
@@ -291,16 +294,25 @@ describe("CartStore", ->
     expect(stores.CartStore.getTotalCost()).toEqual(expectedCartTotalCost)
   )
 
-  # it("should add product to the cart with quantity no more than its available stock", ->
-  #   expect(false).toEqual(true)
-  # )
+  it("should add product to the cart with quantity no more than its available stock", ->
+    flux.actions.addItemToCart(stores.ProductsStore.products[0])
+    flux.actions.addItemToCart(stores.ProductsStore.products[0])
+    flux.actions.addItemToCart(stores.ProductsStore.products[0])
+    flux.actions.addItemToCart(stores.ProductsStore.products[0])
+    expectedCartItems = [
+      {
+        product: stores.ProductsStore.products[0]
+        quantity: 2
+      }
+    ]
+    expect(stores.CartStore.getState().items).toEqual(expectedCartItems)
+  )
 
 )
 
 describe("ProductsStore", ->
 
   it("should filter products by category ID", ->
-    stores.ProductsStore.products = testProductsList
     filterCategoryId = 2
     flux.actions.filterProducts(filterCategoryId)
     expectedProductsList = [
@@ -309,6 +321,7 @@ describe("ProductsStore", ->
         title: "Prod 2"
         categoryId: 2
         price: 4.99
+        stock: 4
       }
     ]
     productsList = stores.ProductsStore.getState().products
@@ -316,7 +329,6 @@ describe("ProductsStore", ->
   )
 
   it("should return empty list if no product is found in a given category", ->
-    stores.ProductsStore.products = testProductsList
     filterCategoryId = 4563
     flux.actions.filterProducts(filterCategoryId)
     productsList = stores.ProductsStore.getState().products

@@ -5,40 +5,7 @@ _ = require("underscore")
 
 CartStore = Fluxxor.createStore({
   initialize: ->
-    testProductsList = [
-      {
-        id: 18
-        title: "Prod 1"
-        categoryId: 1
-        price: 2.45
-      }
-      {
-        id: 45
-        title: "Prod 2"
-        categoryId: 2
-        price: 4.99
-      }
-      {
-        id: 56
-        title: "Prod 3"
-        categoryId: 6
-        price: 9
-      }
-    ]
-    @items = [
-      {
-        quantity: 3
-        product: testProductsList[0]
-      }
-      {
-        quantity: 19
-        product: testProductsList[1]
-      }
-      {
-        quantity: 4
-        product: testProductsList[2]
-      }
-    ]
+    @items = []
     @vouchers = []
     @bindActions(
       constants.ADD_ITEM, @_addItem

@@ -5,9 +5,12 @@ TestUtils = React.addons.TestUtils
 CartActions = require("../../app/actions/CartActions.cjsx")
 ProductsStore = require("../../app/stores/ProductsStore.cjsx")
 CartStore = require("../../app/stores/CartStore.cjsx")
+VoucherStore = require("../../app/stores/VoucherStore.cjsx")
+
 stores = {
   CartStore: new CartStore()
   ProductsStore: new ProductsStore()
+  VoucherStore: new VoucherStore()
 }
 flux = new Fluxxor.Flux(stores, CartActions)
 
@@ -128,9 +131,9 @@ describe("CartStore", ->
       }
     ]
     stores.CartStore.items = cartItems
-    expectedCartTotalCost = 35.42
-    totalCartItems = stores.CartStore.getTotalCost()
-    expect(totalCartItems).toEqual(expectedCartTotalCost)
+    expectedCartSubTotalCost = 35.42
+    totalCartItems = stores.CartStore.getSubTotalCost()
+    expect(totalCartItems).toEqual(expectedCartSubTotalCost)
   )
 
   it("should add a voucher to the cart", ->
@@ -159,6 +162,133 @@ describe("CartStore", ->
   it("should throw an error if an invalid voucher is added", ->
     invalidVoucher = "invalid-voucher"
     expect(flux.actions.addVoucherToCart.bind(null, invalidVoucher)).toThrow(new Error("The voucher you've entered is invalid"))
+  )
+
+  it("should apply voucher with no rules", ->
+    # set up vouchers
+    testVouchers = [
+      {
+        id: 1
+        code: "DELOITTE2015"
+        rules: []
+        discount: 5.00
+      }
+    ]
+    stores.VoucherStore.vouchers = testVouchers
+    # add items to cart
+    cartItems = [
+      {
+        quantity: 1
+        product: testProductsList[0]
+      }
+      {
+        quantity: 3
+        product: testProductsList[1]
+      }
+    ]
+    stores.CartStore.items = cartItems
+    # apply voucher
+    flux.actions.addVoucherToCart("DELOITTE2015")
+    
+    expectedCartTotalCost = parseFloat(17.42 - 5.00).toFixed(2)/1
+    expect(stores.CartStore.getTotalCost()).toEqual(expectedCartTotalCost)
+  )
+
+  it("should not apply voucher when cart total is less than or equal to 50.00 GBP", ->
+    # set up vouchers
+    testVouchers = [
+      {
+        id: 1
+        code: "RABBIT9"
+        rules: [
+          {minTotal: 50.01}
+        ]
+        discount: 10.00
+      }
+    ]
+    stores.VoucherStore.vouchers = testVouchers
+    # add items to cart
+    cartItems = [
+      {
+        quantity: 1
+        product: testProductsList[0]
+      }
+      {
+        quantity: 5
+        product: testProductsList[1]
+      }
+    ]
+    stores.CartStore.items = cartItems
+    # apply voucher
+    flux.actions.addVoucherToCart("RABBIT9")
+
+    expectedCartTotalCost = 27.40
+    expect(stores.CartStore.getTotalCost()).toEqual(expectedCartTotalCost)
+  )
+
+  it("should apply voucher when cart total is more than 50.00 GBP", ->
+    # set up vouchers
+    testVouchers = [
+      {
+        id: 1
+        code: "RABBIT9"
+        rules: [
+          {minTotal: 50.01}
+        ]
+        discount: 10.00
+      }
+    ]
+    stores.VoucherStore.vouchers = testVouchers
+    # add items to cart
+    cartItems = [
+      {
+        quantity: 2
+        product: testProductsList[0]
+      }
+      {
+        quantity: 10
+        product: testProductsList[1]
+      }
+    ]
+    stores.CartStore.items = cartItems
+    # apply voucher
+    flux.actions.addVoucherToCart("RABBIT9")
+
+    expectedCartTotalCost = parseFloat(54.80 - 10.00).toFixed(2)/1
+    expect(stores.CartStore.getTotalCost()).toEqual(expectedCartTotalCost)
+  )
+
+  it("should apply voucher when cart total is more than 75.00 GBP and cart contains items that belong to specific categories", ->
+    # set up vouchers
+    testVouchers = [
+      {
+        id: 3
+        code: "FOOT15"
+        rules: [
+          {minTotal: 75.01}
+          {categoryIds: [1,2]}
+        ]
+        discount: 15.00
+      }
+    ]
+    stores.VoucherStore.vouchers = testVouchers
+    # add items to cart
+    cartItems = [
+      {
+        quantity: 2
+        product: testProductsList[0]
+      }
+      {
+        quantity: 20
+        product: testProductsList[1]
+      }
+    ]
+    stores.CartStore.items = cartItems
+    # apply voucher
+    flux.actions.addVoucherToCart("FOOT15")
+
+    expectedCartTotalCost = parseFloat(104.70 - 15.00).toFixed(2)/1
+    expect(stores.CartStore.getTotalCost()).toEqual(expectedCartTotalCost)
   )
 
 )

@@ -9,6 +9,10 @@ StoreWatchMixin = Fluxxor.StoreWatchMixin
 Cart = React.createClass
   mixins: [FluxMixin, StoreWatchMixin("CartStore")]
 
+  getSubTotalCost: ->
+    flux = @getFlux()
+    return flux.store("CartStore").getSubTotalCost()
+
   getTotalCost: ->
     flux = @getFlux()
     return flux.store("CartStore").getTotalCost()
@@ -27,9 +31,10 @@ Cart = React.createClass
 
   submitVoucher: (e)->
     e.preventDefault()
+    @setState({voucherError: null})
     try
       @getFlux().actions.addVoucherToCart(@state.newVoucher)
-      @setState({voucherError: null})
+      @setState({newVoucher: ""})
     catch e
       @setState({
         voucherError: e.message
@@ -46,7 +51,7 @@ Cart = React.createClass
 
         <br/>
 
-        <strong>Sub-total:</strong> &pound;{@getTotalCost()}
+        <strong>Sub-total:</strong> &pound;{@getSubTotalCost()}
 
         <br/><br/>
 

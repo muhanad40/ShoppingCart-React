@@ -1,10 +1,10 @@
 Fluxxor = require("fluxxor")
 constants = require("../constants/ShoppingCartConstants.cjsx")
-VoucherStore = require("../stores/VoucherStore.cjsx")
+VoucherStore = require("./VoucherStore.cjsx")
 _ = require("underscore")
 
 CartStore = Fluxxor.createStore({
-initialize: ->
+  initialize: ->
     testProductsList = [
       {
         id: 18
@@ -27,15 +27,15 @@ initialize: ->
     ]
     @items = [
       {
-        quantity: 1
+        quantity: 3
         product: testProductsList[0]
       }
       {
-        quantity: 3
+        quantity: 19
         product: testProductsList[1]
       }
       {
-        quantity: 2
+        quantity: 4
         product: testProductsList[2]
       }
     ]
@@ -105,12 +105,19 @@ initialize: ->
     @vouchers = newVouchersList
     @emit("change")
 
-  getTotalCost: ->
+  getSubTotalCost: ->
     items = @getState().items
     total = 0
     for item in items
       total += item.product.price * item.quantity
-    return total
+    return parseFloat(total).toFixed(2)/1
+
+  getTotalCost: ->
+    if @vouchers.length > 0
+      voucherStore = new VoucherStore()
+      return voucherStore.applyVoucher(@vouchers[0], @)
+    else
+      return @getSubTotalCost()
 
   getState: ->
     return {

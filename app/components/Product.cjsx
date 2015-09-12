@@ -18,12 +18,15 @@ ProductComponent = React.createClass
     @getFlux().actions.addItemToCart(product)
 
   render: ->
+    if @props.details.stock > 0
+      addToCartBtn = <span> - <a href="#" onClick={@addToCart.bind(@, @props.details)}>Add to Cart</a></span>
     return (
       <div id={"product-"+@props.details.id}>
         {@props.details.title}
-        {@props.details.stock > 0 &&
-          <a href="#" onClick={@addToCart.bind(@, @props.details)}>Add to Cart</a>
-        }
+        <br/>
+        &pound;{@props.details.price}
+        {addToCartBtn}
+        <br/><br/>
 
       </div>
     )

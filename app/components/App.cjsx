@@ -26,11 +26,13 @@ App = React.createClass
 
   render:->
     return (
-      <div className="col-xs-12" style={{"marginTop": '15px'}}>
+      <main className="col-xs-12" style={{"marginTop": '15px'}}>
         <Header flux={flux} />
         <Sidebar flux={flux} />
-        <RouteHandler flux={flux} />
-      </div>
+        <div className="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+          <RouteHandler flux={flux} />
+        </div>
+      </main>
     )
 
 module.exports = App

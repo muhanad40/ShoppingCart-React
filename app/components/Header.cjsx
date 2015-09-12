@@ -1,6 +1,7 @@
 React = require('react')
 Fluxxor = require("fluxxor")
 CartWidget = require("./CartWidget.cjsx")
+CategoriesMenu = require("./CategoriesMenu.cjsx")
 
 FluxMixin = Fluxxor.FluxMixin(React)
 StoreWatchMixin = Fluxxor.StoreWatchMixin
@@ -17,15 +18,28 @@ Header = React.createClass
 
   render: ->
     return (
+
+
       <nav className="navbar navbar-default">
         <div className="container-fluid">
-          <div className="nav navbar-nav navbar-right">
+          <div className="navbar-header">
+            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#categoriesMenu" aria-expanded="false">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <a className="navbar-brand" href="/#/">Store.com</a>
+          </div>
+          <div className="nav navbar-nav navbar-right hidden-xs">
             <CartWidget />
           </div>
-          <div className="navbar-header">
-            <a className="navbar-brand" href="#">
-              Store.com
-            </a>
+
+          <div className="collapse navbar-collapse" id="categoriesMenu">
+            <div className="visible-xs">
+              <CartWidget />
+              <CategoriesMenu />
+            </div>
           </div>
         </div>
       </nav>

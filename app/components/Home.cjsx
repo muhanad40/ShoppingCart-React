@@ -27,11 +27,9 @@ Home = React.createClass
     flux = @getFlux()
     products = flux.store("ProductsStore").getState().products
     return (
-      <div className="col-xs-10">
-        <h3>Products:</h3>
-          <div className="row">
-            <Products products={products} />
-          </div>
+      <h3>Products:</h3>
+      <div className="row">
+        <Products products={products} />
       </div>
     )
 

@@ -104,7 +104,7 @@ Cart = React.createClass
       cartBody = <div>You have no items in your shopping cart.</div>
         
     return (
-      <div className="col-xs-10">
+      <div>
         <h3>Shopping Cart</h3>
         <br/>
         {cartBody}

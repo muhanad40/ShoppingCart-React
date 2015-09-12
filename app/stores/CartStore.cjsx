@@ -80,7 +80,7 @@ CartStore = Fluxxor.createStore({
     items = @getState().items
     total = 0
     for item in items
-      total += item.product.price * item.quantity
+      total += item.product.price.now * item.quantity
     return parseFloat(total).toFixed(2)/1
 
   getTotalCost: ->

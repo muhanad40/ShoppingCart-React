@@ -148,19 +148,17 @@ describe("CartStore", ->
     expect(cartVouchers).toEqual([voucher])
   )
 
-  it("should only add a voucher to the cart if it exists", ->
-    voucher = "non-existing-voucher"
-    flux.actions.addVoucherToCart(voucher)
-    cartVouchers = stores.CartStore.getState().vouchers
-    expect(cartVouchers).toEqual([])
-  )
-
   it("should remove a voucher from the cart", ->
     voucher = "DELOITTE2015"
     stores.CartStore.vouchers = [voucher]
     flux.actions.removeVoucherFromCart(voucher)
     cartVouchers = stores.CartStore.getState().vouchers
     expect(cartVouchers).toEqual([])
+  )
+
+  it("should throw an error if an invalid voucher is added", ->
+    invalidVoucher = "invalid-voucher"
+    expect(flux.actions.addVoucherToCart.bind(null, invalidVoucher)).toThrow(new Error("The voucher you've entered is invalid"))
   )
 
 )

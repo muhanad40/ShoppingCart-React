@@ -90,6 +90,8 @@ initialize: ->
     appliedVouchers = @getState().vouchers
     voucherStore = new VoucherStore()
     findVoucher = _.where(voucherStore.vouchers, {code: voucher})
+    if findVoucher.length < 1
+      throw new Error("The voucher you've entered is invalid")
     if voucher not in appliedVouchers and findVoucher.length > 0
       appliedVouchers.push(voucher)
     @emit("change")

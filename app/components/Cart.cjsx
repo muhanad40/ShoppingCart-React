@@ -27,10 +27,17 @@ Cart = React.createClass
 
   submitVoucher: (e)->
     e.preventDefault()
-    @getFlux().actions.addVoucherToCart(@state.newVoucher)
-    @setState({newVoucher: ""})
+    try
+      @getFlux().actions.addVoucherToCart(@state.newVoucher)
+      @setState({voucherError: null})
+    catch e
+      @setState({
+        voucherError: e.message
+      })
 
   render: ->
+    if @state.voucherError
+      voucherError = <div>{@state.voucherError}</div>
     return (
       <div>
         <h3>Shopping Cart</h3>
@@ -44,13 +51,13 @@ Cart = React.createClass
         <br/><br/>
 
         <strong>Vouchers:</strong>
+        {voucherError}
+        <Vouchers />
         <form onSubmit={@submitVoucher}>
           <input type="text" value={@state.newVoucher} onChange={@handleVoucherFormChange} />
           <input type="submit" value="Apply Voucher" onClick={@submitVoucher} />
         </form>
-        <Vouchers />
-        <br/><br/>
-
+        <br/>
         <strong>Total:</strong> &pound;{@getTotalCost()}
 
       </div>

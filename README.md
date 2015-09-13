@@ -38,6 +38,11 @@ open ./test/index.html
 ```
 
 Behave/Selenium feature tests:
+You need to have the app already running in a separate terminal tab:
+```bash
+npm start
+```
+Then you run behave:
 ```bash
 behave
 ```

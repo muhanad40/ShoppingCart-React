@@ -1,7 +1,7 @@
 Shopping Cart with ReactJs
 ==========================
 
-![ReactJS Shopping Cart App](screenshot1.png)
+![ReactJS Shopping Cart App](screenshot.png)
 
 This is a shopping cart app built with [ReactJS](http://facebook.github.io/react/). I used the [Flux](https://facebook.github.io/flux/) architecture with [Fluxxor](fluxxor.com).
 

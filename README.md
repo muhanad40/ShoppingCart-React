@@ -11,6 +11,8 @@ I used [ExpressJS](http://expressjs.com/) to serve the app on a server. It's lig
 
 I used [Webpack](http://webpack.github.io/) because it bundles all my app's dependencies into one single file. I could have used Gulp to concatenate my JavaScript files, but Webpack detects dependencies automatically and bundles them together. I only used [Gulp](http://gulpjs.com/) to run the Webpack bundling commands or to watch the app and test directories to run the appropriate bundling commands.
 
+Finally, I used [Bootstrap](getbootstrap.com) because it's quicker to assemble a responsive UI. If this was a real project, I would use Bourbon and Neat with SASS.
+
 Requirements:
 -------------
 - Python

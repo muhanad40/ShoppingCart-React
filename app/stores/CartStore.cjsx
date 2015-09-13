@@ -86,6 +86,7 @@ CartStore = Fluxxor.createStore({
   getTotalCost: ->
     if @vouchers.length > 0
       voucherStore = new VoucherStore()
+      # TODO: Apply multiple vouchers
       return voucherStore.applyVoucher(@vouchers[0], @)
     else
       return @getSubTotalCost()

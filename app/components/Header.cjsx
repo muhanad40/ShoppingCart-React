@@ -18,8 +18,6 @@ Header = React.createClass
 
   render: ->
     return (
-
-
       <nav className="navbar navbar-default">
         <div className="container-fluid">
           <div className="navbar-header">
@@ -34,7 +32,6 @@ Header = React.createClass
           <div className="nav navbar-nav navbar-right hidden-xs">
             <CartWidget />
           </div>
-
           <div className="collapse navbar-collapse" id="categoriesMenu">
             <div className="visible-xs">
               <CartWidget />

@@ -23,13 +23,10 @@ Sidebar = React.createClass
 
   render: ->
     flux = @getFlux()
-    # get category id from GET param
     filterCategoryId = @context.router.getCurrentQuery().filter
     if filterCategoryId
-      # filter param? filter listing
       flux.actions.filterProducts(filterCategoryId)
     else
-      # reset listing incase it was filtered previously
       flux.actions.resetProductsListing()
     
     return (

@@ -5,11 +5,6 @@ React = require("react")
 Router = require("react-router")
 Route = Router.Route;
 
-# flux.on("dispatch", (type, payload)->
-#   if console and console.log
-#     console.log("[Dispatch]", type, payload)
-# )
-
 require("jquery")
 require("../node_modules/bootstrap/dist/css/bootstrap-theme.css")
 require("../node_modules/bootstrap/dist/css/bootstrap.css")

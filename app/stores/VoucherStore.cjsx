@@ -33,17 +33,13 @@ VoucherStore = Fluxxor.createStore({
     voucher = @_getVoucher(voucher)
     amount = cartStore.getSubTotalCost()
     if voucher.rules.length > 0
-      # go through each rule, if false return sub-total amount without any deductions
       for rule in voucher.rules
-        # RULE: Don't deduct if amount is less than required minimum
         if rule.hasOwnProperty("minTotal") and rule.minTotal > amount
           return amount
-        # RULE: Don't deduct if none of the products belong to a required category
         if rule.hasOwnProperty("categoryIds") and rule.categoryIds
           results = _.map(cartStore.getState().items, (itemObj)->
             return itemObj.product.categoryId in rule.categoryIds
           )
-          # if no items belong to any of the required categories, return sub-total amount
           if !_.some(results)
             return amount
     return parseFloat(amount - voucher.discount).toFixed(2)/1

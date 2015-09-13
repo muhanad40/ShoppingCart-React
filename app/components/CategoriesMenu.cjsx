@@ -23,7 +23,6 @@ CategoriesMenu = React.createClass
   render: ->
     flux = @getFlux()
 
-    # get category id from GET param
     filterCategoryId = @context.router.getCurrentQuery().filter
 
     categoriesNav = _.map(flux.store("CategoryStore").getState().categories, (category, index)=>

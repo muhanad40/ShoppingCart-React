@@ -16,19 +16,13 @@ CartStore = Fluxxor.createStore({
 
   _addItem: (payload) ->
     product = payload.product
-    # find the product inside the cart
     cartProduct = _.find(@items, (cartItem)->
       return cartItem.product.id == product.id
     )
-    # product already added?
     if cartProduct
-      # only add if there's enough stock
       if cartProduct.quantity < cartProduct.product.stock
-        # increment quantity
         cartProduct.quantity += 1
     else
-      # otherwise, add it
-      # enough stock? add it
       if product.stock > 0
         @items.push({
           product: product

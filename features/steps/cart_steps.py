@@ -16,7 +16,6 @@ def step_impl(context):
 def step_impl(context):
     context.browser.get_path("/")
     products = context.browser.find_elements_by_class_name("product")
-    # add only the first 4 products
     context.products_to_add = products[0:4]
     context.cart_item_titles = [product.find_element_by_class_name("product-title").text for product in context.products_to_add]
     for product in context.products_to_add:
@@ -25,7 +24,6 @@ def step_impl(context):
             if add_to_cart_button:
                 add_to_cart_button.click()
         except:
-            # may not find element because item is out of stock
             return
 
 @then(u'I should see those items added')
@@ -75,7 +73,6 @@ def step_impl(context):
 
 @given(u'I remove an item from the cart')
 def step_impl(context):
-    # remove the first cart item only
     cart_items = context.browser.find_elements_by_class_name("cart-item")
     context.removed_cart_item_title = cart_items[0].find_element_by_class_name("cart-item-title")
     remove_cart_item_btn = cart_items[0].find_element_by_class_name("remove-cart-item-btn")

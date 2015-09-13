@@ -50,7 +50,6 @@ testProductsList = [
 describe("CartStore", ->
 
   beforeEach(->
-    stores.ProductsStore.products = testProductsList
     stores.CartStore.items = []
     stores.CartStore.vouchers = []
   )
@@ -300,47 +299,17 @@ describe("CartStore", ->
   )
 
   it("should add product to the cart with quantity no more than its available stock", ->
-    flux.actions.addItemToCart(stores.ProductsStore.products[0])
-    flux.actions.addItemToCart(stores.ProductsStore.products[0])
-    flux.actions.addItemToCart(stores.ProductsStore.products[0])
-    flux.actions.addItemToCart(stores.ProductsStore.products[0])
+    flux.actions.addItemToCart(testProductsList[0])
+    flux.actions.addItemToCart(testProductsList[0])
+    flux.actions.addItemToCart(testProductsList[0])
+    flux.actions.addItemToCart(testProductsList[0])
     expectedCartItems = [
       {
-        product: stores.ProductsStore.products[0]
+        product: testProductsList[0]
         quantity: 2
       }
     ]
     expect(stores.CartStore.getState().items).toEqual(expectedCartItems)
   )
 
-)
-
-describe("ProductsStore", ->
-
-  it("should filter products by category ID", ->
-    filterCategoryId = 2
-    flux.actions.filterProducts(filterCategoryId)
-    expectedProductsList = [
-      {
-        id: 3
-        title: "Leather Driver Saddle Loafers, Tan"
-        categoryId: 2
-        price: {
-          before: null
-          now: 34
-        }
-        stock: 12
-      }
-    ]
-    productsList = stores.ProductsStore.getState().products
-    expect(productsList).toEqual(expectedProductsList)
-  )
-
-  it("should return empty list if no product is found in a given category", ->
-    filterCategoryId = 4563
-    flux.actions.filterProducts(filterCategoryId)
-    productsList = stores.ProductsStore.getState().products
-    expect(productsList).toEqual([])
-  )
-  
 )

@@ -1,1 +1,2 @@
-require("./spec/ProductsSpec.coffee")
+require("./spec/CartStoreSpec.coffee")
+require("./spec/ProductsStoreSpec.coffee")

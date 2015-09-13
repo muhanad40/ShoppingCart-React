@@ -18,7 +18,7 @@ npm install
 To run the app:
 First bundle the app code:
 ```bash
-gulp webpack:app
+./node_modules/.bin/gulp webpack:app
 ```
 Once gulp finishes, run the following command:
 ```bash
@@ -30,7 +30,7 @@ Run the tests:
 --------------
 To run Jasmine tests, first bundle the tests script:
 ```bash
-gulp webpack:tests
+./node_modules/.bin/gulp webpack:tests
 ```
 Then
 ```bash

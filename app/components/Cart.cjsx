@@ -50,13 +50,16 @@ Cart = React.createClass
 
     cartItems = @state.CartStore.items.map((cartItem, index)=>
       return (
-        <tr key={index}>
+        <tr key={index} className="cart-item">
           <td>
-            {cartItem.product.title}<br/>
+            <span className="cart-item-title">{cartItem.product.title}</span>
+            <br/>
             <a href="#" onClick={@removeItem.bind(@, cartItem)}>Remove</a>
           </td>
-          <td>{cartItem.quantity}</td>
-          <td className="text-right">&pound;{parseFloat(cartItem.quantity * cartItem.product.price.now).toFixed(2)/1}</td>
+          <td className="cart-item-quantity">{cartItem.quantity}</td>
+          <td className="text-right">
+            &pound;<span className="cart-item-total-price">{parseFloat(cartItem.quantity * cartItem.product.price.now).toFixed(2)/1}</span>
+          </td>
         </tr>
       )
     )
@@ -101,7 +104,7 @@ Cart = React.createClass
         </div>
       )
     else
-      cartBody = <div>You have no items in your shopping cart.</div>
+      cartBody = <div id="no-cart-items-msg">You have no items in your shopping cart.</div>
         
     return (
       <div>

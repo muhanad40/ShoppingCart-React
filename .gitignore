@@ -4,3 +4,4 @@ test/testBundle.js
 public
 server.js
 dist
+*.log

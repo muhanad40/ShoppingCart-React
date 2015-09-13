@@ -26,7 +26,9 @@ ProductComponent = React.createClass
         <div className="panel panel-default" id={"product-"+@props.details.id}>
           <div className="panel-body">
             <h3>{@props.details.title}</h3>
-            <h4><span className="label label-default">&pound;{@props.details.price}</span></h4>
+            {@props.details.price.before &&
+              <s>&pound;{@props.details.price.before}</s>}
+            <h4><span className="label label-default">&pound;{@props.details.price.now}</span></h4>
             {addToCartBtn}
           </div>
         </div>

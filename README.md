@@ -16,15 +16,24 @@ npm install
 ```
 
 To run the app:
+First bundle the app code:
+```bash
+gulp webpack:app
+```
+Once gulp finishes, run the following command:
 ```bash
 npm start
 ```
-Navigate to http://localhost:3000
+Navigate to **http://localhost:3000**
 
 Run the tests:
-Jasmine unit tests
+--------------
+To run Jasmine tests, first bundle the tests script:
 ```bash
 gulp webpack:tests
+```
+Then
+```bash
 open ./test/index.html
 ```
 

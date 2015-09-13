@@ -1,5 +1,6 @@
 React = require('react')
 Fluxxor = require("fluxxor")
+classnames = require("classnames")
 FluxMixin = Fluxxor.FluxMixin(React)
 StoreWatchMixin = Fluxxor.StoreWatchMixin
 
@@ -21,14 +22,20 @@ ProductComponent = React.createClass
   render: ->
     if @props.details.stock > 0
       addToCartBtn = <a href="#" className="add-to-cart-btn btn btn-primary" onClick={@addToCart.bind(@, @props.details)}>Add to Cart</a>
+    productClassnames = classnames({
+      "product": true
+      "product-out-of-stock": @props.details.stock == 0
+      "col-xs-12": true
+      "col-sm-6 col-md-4": true
+    })
     return (
-      <div className="product col-xs-12 col-sm-6 col-md-4">
+      <div className={productClassnames}>
         <div className="panel panel-default" id={"product-"+@props.details.id}>
           <div className="panel-body">
             <h3 className="product-title">{@props.details.title}</h3>
             {@props.details.price.before &&
               <s>&pound;{@props.details.price.before}</s>}
-            <h4><span className="label label-default">&pound;{@props.details.price.now}</span></h4>
+            <h4><span className="label label-default">&pound;<span className="product-price">{@props.details.price.now}</span></span></h4>
             {addToCartBtn}
           </div>
         </div>

@@ -14,7 +14,7 @@ CartWidget = React.createClass
 
   getSubTotalCost: ->
     flux = @getFlux()
-    return flux.store("CartStore").getSubTotalCost()
+    return flux.store("CartStore").getTotalCost()
   
   getStateFromFlux: ->
     flux = @getFlux()
@@ -25,8 +25,8 @@ CartWidget = React.createClass
 
   render: ->
     return (
-      <div className="navbar-text">
-        <strong>Cart:</strong> {@getTotalCartItems()} items (&pound;{@getSubTotalCost()}) - <a data-toggle="collapse" data-target="#categoriesMenu" href="/#/cart">View cart</a>
+      <div className="navbar-text" id="cart-widget">
+        <strong>Cart:</strong> <span id="cart-widget-total-items">{@getTotalCartItems()}</span> items (&pound;<span id="cart-widget-total-cost">{@getSubTotalCost()}</span>) - <a data-toggle="collapse" data-target="#categoriesMenu" href="/#/cart">View cart</a>
       </div>
     )
 

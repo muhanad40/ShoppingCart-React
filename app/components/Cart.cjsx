@@ -54,7 +54,7 @@ Cart = React.createClass
           <td>
             <span className="cart-item-title">{cartItem.product.title}</span>
             <br/>
-            <a href="#" onClick={@removeItem.bind(@, cartItem)}>Remove</a>
+            <a href="#" className="remove-cart-item-btn" onClick={@removeItem.bind(@, cartItem)}>Remove</a>
           </td>
           <td className="cart-item-quantity">{cartItem.quantity}</td>
           <td className="text-right">
@@ -87,14 +87,14 @@ Cart = React.createClass
                   {voucherError}
                   <Vouchers />
                   <form className="form-inline" onSubmit={@submitVoucher}>
-                    <input type="text" className="form-control" value={@state.newVoucher} onChange={@handleVoucherFormChange} />
-                    &nbsp;<input type="submit" className="btn btn-primary" value="Apply Voucher" onClick={@submitVoucher} />
+                    <input type="text" id="voucher-input" className="form-control" value={@state.newVoucher} onChange={@handleVoucherFormChange} />
+                    &nbsp;<input type="submit" id="add-voucher-btn" className="btn btn-primary" value="Apply Voucher" onClick={@submitVoucher} />
                   </form>
                 </td>
               </tr>
               <tr>
                 <td className="text-right" colSpan="2"><strong>Total:</strong></td>
-                <td className="text-right">&pound;{@getTotalCost()}</td>
+                <td className="text-right">&pound;<span id="cart-total">{@getTotalCost()}</span></td>
               </tr>
             </tbody>
           </table>

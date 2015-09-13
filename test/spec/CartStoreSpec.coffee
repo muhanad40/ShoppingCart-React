@@ -143,7 +143,6 @@ describe("CartStore", ->
   )
 
   it("should apply voucher and deduct 5.00 GBP", ->
-    # set up vouchers
     testVouchers = [
       {
         id: 1
@@ -153,7 +152,6 @@ describe("CartStore", ->
       }
     ]
     stores.VoucherStore.vouchers = testVouchers
-    # add items to cart
     cartItems = [
       {
         quantity: 1
@@ -165,7 +163,6 @@ describe("CartStore", ->
       }
     ]
     stores.CartStore.items = cartItems
-    # apply voucher
     flux.actions.addVoucherToCart("DELOITTE2015")
     
     expectedCartTotalCost = parseFloat(225 - 5.00).toFixed(2)/1
@@ -173,7 +170,6 @@ describe("CartStore", ->
   )
 
   it("should not apply voucher when cart total is less than or equal to 50.00 GBP", ->
-    # set up vouchers
     testVouchers = [
       {
         id: 1
@@ -185,7 +181,6 @@ describe("CartStore", ->
       }
     ]
     stores.VoucherStore.vouchers = testVouchers
-    # add items to cart
     cartItems = [
       {
         quantity: 1
@@ -193,7 +188,6 @@ describe("CartStore", ->
       }
     ]
     stores.CartStore.items = cartItems
-    # apply voucher
     flux.actions.addVoucherToCart("RABBIT9")
 
     expectedCartTotalCost = 42
@@ -201,7 +195,6 @@ describe("CartStore", ->
   )
 
   it("should apply voucher and deduct 10.00 GBP when cart total is more than 50.00 GBP", ->
-    # set up vouchers
     testVouchers = [
       {
         id: 1
@@ -213,7 +206,6 @@ describe("CartStore", ->
       }
     ]
     stores.VoucherStore.vouchers = testVouchers
-    # add items to cart
     cartItems = [
       {
         quantity: 2
@@ -225,7 +217,6 @@ describe("CartStore", ->
       }
     ]
     stores.CartStore.items = cartItems
-    # apply voucher
     flux.actions.addVoucherToCart("RABBIT9")
 
     expectedCartTotalCost = parseFloat(618 - 10.00).toFixed(2)/1
@@ -233,7 +224,6 @@ describe("CartStore", ->
   )
 
   it("should apply voucher and deduct 15.00 GBP when cart total is more than 75.00 GBP and cart contains items that belong to specific categories", ->
-    # set up vouchers
     testVouchers = [
       {
         id: 3
@@ -246,7 +236,6 @@ describe("CartStore", ->
       }
     ]
     stores.VoucherStore.vouchers = testVouchers
-    # add items to cart
     cartItems = [
       {
         quantity: 2
@@ -258,7 +247,6 @@ describe("CartStore", ->
       }
     ]
     stores.CartStore.items = cartItems
-    # apply voucher
     flux.actions.addVoucherToCart("FOOT15")
 
     expectedCartTotalCost = parseFloat(1038 - 15.00).toFixed(2)/1

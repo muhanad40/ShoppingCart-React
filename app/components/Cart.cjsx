@@ -56,7 +56,7 @@ Cart = React.createClass
             <a href="#" onClick={@removeItem.bind(@, cartItem)}>Remove</a>
           </td>
           <td>{cartItem.quantity}</td>
-          <td className="text-right">&pound;{parseFloat(cartItem.quantity * cartItem.product.price).toFixed(2)/1}</td>
+          <td className="text-right">&pound;{parseFloat(cartItem.quantity * cartItem.product.price.now).toFixed(2)/1}</td>
         </tr>
       )
     )

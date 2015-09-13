@@ -42,6 +42,7 @@ To run behave/selenium tests, you need to have the app already running in a sepa
 npm start
 ```
 **NOTE: `chromedriver` path must be in your /usr/local/bin or in $PATH**
+
 Then you run behave:
 ```bash
 behave

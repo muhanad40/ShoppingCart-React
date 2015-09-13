@@ -18,4 +18,5 @@ def step_impl(context):
     products = context.browser.find_elements_by_class_name("product")
     for product in products:
         if re.search("product-out-of-stock", product.get_attribute("class")):
-            assert_that(calling(product.find_element_by_class_name).with_args("add-to-cart-btn"), raises(NoSuchElementException))
+            label = product.find_element_by_class_name("add-to-cart-btn-wrapper").text
+            assert_that(label, equal_to("Out of stock"))

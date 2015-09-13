@@ -35,8 +35,15 @@ ProductComponent = React.createClass
             <h3 className="product-title">{@props.details.title}</h3>
             {@props.details.price.before &&
               <s>&pound;{@props.details.price.before}</s>}
-            <h4><span className="label label-default">&pound;<span className="product-price">{@props.details.price.now}</span></span></h4>
-            {addToCartBtn}
+            <div className="add-to-cart-btn-wrapper col-xs-6">
+              {addToCartBtn}
+              {@props.details.stock == 0 &&
+                <span className="text-muted">Out of stock</span>
+              }
+            </div>
+            <div className="col-xs-6 text-right product-price-wrapper">
+              <h4 className="text-primary">&pound;<span className="product-price">{@props.details.price.now}</span></h4>
+            </div>
           </div>
         </div>
       </div>

@@ -44,4 +44,5 @@ def step_impl(context):
         cart_item_quantity = int(item.find_element_by_class_name("cart-item-quantity").text)
         cart_item_total_price = int(item.find_element_by_class_name("cart-item-total-price").text)
         subtotal += cart_item_total_price * cart_item_quantity
-    assert_that(subtotal, equal_to(194))
+    subtotal_element = context.browser.find_element_by_id("cart-subtotal")
+    assert_that(int(subtotal_element.text), equal_to(subtotal))

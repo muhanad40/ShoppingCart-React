@@ -79,7 +79,7 @@ Cart = React.createClass
               {cartItems}
               <tr>
                 <td className="text-right" colSpan="2"><strong>Sub-total:</strong></td>
-                <td className="text-right">&pound;{@getSubTotalCost()}</td>
+                <td className="text-right">&pound;<span id="cart-subtotal">{@getSubTotalCost()}</span></td>
               </tr>
               <tr>
                 <td colSpan="3">

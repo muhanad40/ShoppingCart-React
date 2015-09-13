@@ -18,9 +18,11 @@ Feature: Cart
 		And I am on the shopping cart page
 		Then I should see the correct sub-total
 
+	@cart-total
 	Scenario: Check total
-		Given I am on the shopping cart page
-		Then I should see stuff
+		Given I have added products to my shopping cart
+		And I am on the shopping cart page
+		Then I should see the correct total
 
 	Scenario: Add voucher and check total
 		Given I am on the shopping cart page

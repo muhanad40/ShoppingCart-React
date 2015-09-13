@@ -64,7 +64,7 @@ ProductsStore = Fluxxor.createStore({
         id: 6
         title: "Gold Button Cardigan, Black"
         pictureFilename: "gold-button-cardigan-black.jpg"
-        categoryId: 2
+        categoryId: 3
         price: {
           before: null
           now: 167
@@ -75,7 +75,7 @@ ProductsStore = Fluxxor.createStore({
         id: 7
         title: "Cotton Shorts, Medium Red"
         pictureFilename: "cotton-shorts-medium-red.jpeg"
-        categoryId: 2
+        categoryId: 3
         price: {
           before: null
           now: 30
@@ -108,7 +108,7 @@ ProductsStore = Fluxxor.createStore({
         id: 10
         title: "Sharkskin Waistcoat, Charcoal"
         pictureFilename: "sharkskin-waistcoat-charcoal.jpg"
-        categoryId: 6
+        categoryId: 5
         price: {
           before: null
           now: 75
@@ -119,7 +119,7 @@ ProductsStore = Fluxxor.createStore({
         id: 11
         title: "Lightweight Patch Pocket Blazer, Deer"
         pictureFilename: "lightweight-patch-pocket-blazer-deer.jpeg"
-        categoryId: 6
+        categoryId: 5
         price: {
           before: null
           now: 175.50
@@ -130,7 +130,7 @@ ProductsStore = Fluxxor.createStore({
         id: 12
         title: "Bird Print Dress, Black"
         pictureFilename: "bird-print-dress-black.jpeg"
-        categoryId: 5
+        categoryId: 6
         price: {
           before: null
           now: 270
@@ -141,7 +141,7 @@ ProductsStore = Fluxxor.createStore({
         id: 13
         title: "Mid Twist Cut­Out Dress, Pink"
         pictureFilename: "mid-twist-cutout-dress-pink.jpeg"
-        categoryId: 5
+        categoryId: 6
         price: {
           before: null
           now: 540

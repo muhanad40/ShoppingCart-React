@@ -4,9 +4,9 @@ Product = require('./Product.cjsx')
 ProductsComponent = React.createClass
 
   render: ->
-    productComponents = @props.products.map((product)=>
+    productComponents = @props.products.map((product, index)=>
       return (
-        <Product key={product.id} details={product} />
+        <Product key={index} details={product} />
       )
     )
     return (

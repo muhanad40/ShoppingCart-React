@@ -25,13 +25,13 @@ CategoryStore = Fluxxor.createStore({
       }
       {
         id: 5
-        slug: "womens-formalwear"
-        name: "Women's formalwear"
+        slug: "mens-formalwear"
+        name: "Men's formalwear"
       }
       {
         id: 6
-        slug: "mens-formalwear"
-        name: "Men's formalwear"
+        slug: "womens-formalwear"
+        name: "Women's formalwear"
       }
     ]
 

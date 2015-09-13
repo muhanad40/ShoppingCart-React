@@ -7,7 +7,7 @@ Initially I started doing this task using AngularJS, but it was becoming difficu
 
 For tests, I used Jasmine to to do the unit tests. For the feature tests, I used [Behave](https://pythonhosted.org/behave/index.html) because it has a nicer API. It allows me to write features tests in words and match steps to those to execute.
 
-I used [ExpressJS](http://expressjs.com/) to serve the app on a server so that I can run the tests. I could have executed a python subprocess to start the server when the behave tests begin, but I still want to preview the app by myself.
+I used [ExpressJS](http://expressjs.com/) to serve the app on a server. It's lightweight and quick to setup. I also use it run the Behave feature tests. I could have executed a python subprocess to start the server when the behave tests begin, but I still want to preview the app by myself.
 
 I used [Webpack](http://webpack.github.io/) because it bundles all my app's dependencies into one single file. I could have used Gulp to concatenate my JavaScript files, but Webpack detects dependencies automatically and bundles them together. I only used [Gulp](http://gulpjs.com/) to run the Webpack bundling commands or to watch the app and test directories to run the appropriate bundling commands.
 

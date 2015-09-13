@@ -3,5 +3,4 @@ node_modules
 test/testBundle.js
 public
 server.js
-dist
 *.log

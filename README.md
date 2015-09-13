@@ -37,7 +37,13 @@ Then
 open ./test/index.html
 ```
 
-Behave/Selenium feature tests:
+To run behave/selenium tests, you need to have the app already running in a separate terminal tab:
+```bash
+npm start
+```
+**NOTE: `chromedriver` path must be in your /usr/local/bin or in $PATH**
+
+Then you run behave:
 ```bash
 behave
 ```

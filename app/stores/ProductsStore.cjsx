@@ -8,6 +8,7 @@ ProductsStore = Fluxxor.createStore({
       {
         id: 1
         title: "Almond Toe Court Shoes, Patent Blac"
+        pictureFilename: "almond-toe-court-shoes-patent-blac.jpg"
         categoryId: 1
         price: {
           before: null
@@ -18,6 +19,7 @@ ProductsStore = Fluxxor.createStore({
       {
         id: 2
         title: "Suede Shoes, Blue"
+        pictureFilename: "suede-shoes-blue.png"
         categoryId: 1
         price: {
           before: null
@@ -28,6 +30,7 @@ ProductsStore = Fluxxor.createStore({
       {
         id: 3
         title: "Leather Driver Saddle Loafers, Tan"
+        pictureFilename: "leather-driver-saddle-loafers.jpeg"
         categoryId: 2
         price: {
           before: null
@@ -38,6 +41,7 @@ ProductsStore = Fluxxor.createStore({
       {
         id: 4
         title: "Flip Flops, Red"
+        pictureFilename: "red-flip-flops.jpg"
         categoryId: 2
         price: {
           before: null
@@ -48,6 +52,7 @@ ProductsStore = Fluxxor.createStore({
       {
         id: 5
         title: "Flip Flops, Blue"
+        pictureFilename: "blue-flip-flops.jpg"
         categoryId: 2
         price: {
           before: null
@@ -58,6 +63,7 @@ ProductsStore = Fluxxor.createStore({
       {
         id: 6
         title: "Gold Button Cardigan, Black"
+        pictureFilename: "gold-button-cardigan-black.jpg"
         categoryId: 2
         price: {
           before: null
@@ -68,6 +74,7 @@ ProductsStore = Fluxxor.createStore({
       {
         id: 7
         title: "Cotton Shorts, Medium Red"
+        pictureFilename: "cotton-shorts-medium-red.jpeg"
         categoryId: 2
         price: {
           before: null
@@ -78,6 +85,7 @@ ProductsStore = Fluxxor.createStore({
       {
         id: 8
         title: "Fine Stripe Short Sleeve Shirt, Grey"
+        pictureFilename: "fine-stripe-short-sleeve-shirt-grey.jpg"
         categoryId: 4
         price: {
           before: null
@@ -88,6 +96,7 @@ ProductsStore = Fluxxor.createStore({
       {
         id: 9
         title: "Fine Stripe Short Sleeve Shirt, Green"
+        pictureFilename: "fine-stripe-short-sleeve-shirt-green.jpeg"
         categoryId: 4
         price: {
           before: 49.99
@@ -98,6 +107,7 @@ ProductsStore = Fluxxor.createStore({
       {
         id: 10
         title: "Sharkskin Waistcoat, Charcoal"
+        pictureFilename: "sharkskin-waistcoat-charcoal.jpg"
         categoryId: 6
         price: {
           before: null
@@ -108,6 +118,7 @@ ProductsStore = Fluxxor.createStore({
       {
         id: 11
         title: "Lightweight Patch Pocket Blazer, Deer"
+        pictureFilename: "lightweight-patch-pocket-blazer-deer.jpeg"
         categoryId: 6
         price: {
           before: null
@@ -118,6 +129,7 @@ ProductsStore = Fluxxor.createStore({
       {
         id: 12
         title: "Bird Print Dress, Black"
+        pictureFilename: "bird-print-dress-black.jpeg"
         categoryId: 5
         price: {
           before: null
@@ -128,6 +140,7 @@ ProductsStore = Fluxxor.createStore({
       {
         id: 13
         title: "Mid Twist Cut­Out Dress, Pink"
+        pictureFilename: "mid-twist-cutout-dress-pink.jpeg"
         categoryId: 5
         price: {
           before: null
@@ -142,6 +155,9 @@ ProductsStore = Fluxxor.createStore({
       constants.FILTER_PRODUCTS, @_filterProducts
       constants.RESET_PRODUCTS_LISTING, @_resetProductsListing
     )
+
+  getPicturesDir: ->
+    return "/img/"
 
   _filterProducts: (payload)->
     categoryId = parseInt(payload.categoryId)

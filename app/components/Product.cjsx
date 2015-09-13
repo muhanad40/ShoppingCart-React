@@ -28,11 +28,13 @@ ProductComponent = React.createClass
       "col-xs-12": true
       "col-sm-6 col-md-4": true
     })
+    picturesDirectory = @getFlux().store("ProductsStore").getPicturesDir()
     return (
       <div className={productClassnames}>
         <div className="panel panel-default" id={"product-"+@props.details.id}>
           <div className="panel-body">
-            <h3 className="product-title">{@props.details.title}</h3>
+            <img src={picturesDirectory + @props.details.pictureFilename} width="100%"/>
+            <h4 className="product-title">{@props.details.title}</h4>
             {@props.details.price.before &&
               <s>&pound;{@props.details.price.before}</s>}
             <div className="add-to-cart-btn-wrapper col-xs-6">

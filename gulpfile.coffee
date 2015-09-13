@@ -10,6 +10,7 @@ gulp.task('webpack:tests', shell.task([
 ]))
 
 gulp.task('watch', ->
+  gulp.watch('./app/*.scss', ['webpack:app'])
   gulp.watch('./app/**/*.cjsx', ['webpack:app'])
   gulp.watch('./test/**/*.coffee', ['webpack:tests'])
 )

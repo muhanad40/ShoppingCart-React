@@ -9,6 +9,7 @@ require("jquery")
 require("../node_modules/bootstrap/dist/css/bootstrap-theme.css")
 require("../node_modules/bootstrap/dist/css/bootstrap.css")
 require("../node_modules/bootstrap/dist/js/bootstrap.js")
+require("./app.scss")
 
 routes = (
   <Route handler={App} path="/">

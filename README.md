@@ -21,6 +21,12 @@ Discount vouchers
 - **RABBIT9** - £10 discount if order is above £50
 - **FOOT15** - £15 discount if order is above £75 and at least one footware item is purchased
 
+Code tour
+=========
+This app was built using the Flux architecture so the directory structure is organised under `/app`. The app is split into different parts under their appropriate directories. Main parts are Components, Actions and Stores. The Store contain the main logic that is responsible for dealing with data. It has various methods that respond to specific actions. The Actions has methods that are triggered by the view which dispatch actions for a store to respond to. The Components are the different elements of the application such as Header, Sidebar, Products list and Product item.
+
+The Jasmine tests are under `/test` directory and the features tests are under `/features` directory. 
+
 Requirements:
 -------------
 - Python

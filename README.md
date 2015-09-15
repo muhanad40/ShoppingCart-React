@@ -23,7 +23,7 @@ Discount vouchers
 
 Code tour
 =========
-This app was built using the Flux architecture so the directory structure is organised under `/app`. The app is split into different parts under their appropriate directories. The main parts are Components, Actions and Stores. The Store contain the main logic that is responsible for dealing with data. It has various methods that respond to specific actions. The Actions has methods that are triggered by the view which dispatch actions for a store to respond to. The Components are the different elements of the application such as Header, Sidebar, Products list and Product item.
+This app was built using the Flux architecture so the directory structure is organised under `/app`. The app is split into different parts under their appropriate directories. The main parts are Components, Actions and Stores. The Store contains the main logic that is responsible for dealing with data. It has various methods that respond to specific actions. The Actions has methods that are triggered by the view which dispatch actions for a store to respond to. The Components are the different elements of the application such as Header, Sidebar, Products list and Product item.
 
 The Jasmine tests are under `/test` directory and the features tests are under `/features` directory. 
 
@@ -35,7 +35,7 @@ Requirements:
 
 Project setup:
 -------------
-Once you have the requirements installed, run the following commands:
+I recommend using [Virtualenv](https://virtualenv.pypa.io/en/latest/) and [VirtualenvWrappper](https://virtualenvwrapper.readthedocs.org/en/latest/) to isolate the installation of python libraries from your computer's global scope. Once you have the requirements installed, run the following commands:
 ```bash
 pip install -r requirements-dev.txt
 npm install

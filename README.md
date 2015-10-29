@@ -29,7 +29,7 @@ The Jasmine tests are under `/test` directory and the features tests are under `
 
 Requirements:
 -------------
-- Python
+- Python 3
 - NPM/Node
 - ChromeWebDriver
 

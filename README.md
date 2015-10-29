@@ -17,7 +17,7 @@ Finally, I used [Bootstrap](getbootstrap.com) because it's quicker to assemble a
 
 Discount vouchers
 ===============
-- **DELOITTE2015** - £5 discount
+- **COFFEE15** - £5 discount
 - **RABBIT9** - £10 discount if order is above £50
 - **FOOT15** - £15 discount if order is above £75 and at least one footware item is purchased
 

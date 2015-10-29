@@ -99,7 +99,7 @@ Cart = React.createClass
             </tbody>
           </table>
           <div className="text-right">
-            <a href="#" className="btn btn-primary btn-lg">Pay</a>
+            <input type="button" className="btn btn-primary btn-lg" value="Pay" />
           </div>
         </div>
       )

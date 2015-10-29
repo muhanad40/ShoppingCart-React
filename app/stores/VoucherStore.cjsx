@@ -6,7 +6,7 @@ VoucherStore = Fluxxor.createStore({
     @vouchers = [
       {
         id: 1
-        code: "DELOITTE2015"
+        code: "COFFEE16"
         rules: []
         discount: 5.00
       }

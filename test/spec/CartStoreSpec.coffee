@@ -115,14 +115,14 @@ describe("CartStore", ->
   )
 
   it("should add a voucher to the cart", ->
-    voucher = "DELOITTE2015"
+    voucher = "COFFEE16"
     flux.actions.addVoucherToCart(voucher)
     cartVouchers = stores.CartStore.getState().vouchers
     expect(cartVouchers).toEqual([voucher])
   )
 
   it("should add a voucher to the cart only once", ->
-    voucher = "DELOITTE2015"
+    voucher = "COFFEE16"
     flux.actions.addVoucherToCart(voucher)
     flux.actions.addVoucherToCart(voucher)
     cartVouchers = stores.CartStore.getState().vouchers
@@ -130,7 +130,7 @@ describe("CartStore", ->
   )
 
   it("should remove a voucher from the cart", ->
-    voucher = "DELOITTE2015"
+    voucher = "COFFEE16"
     stores.CartStore.vouchers = [voucher]
     flux.actions.removeVoucherFromCart(voucher)
     cartVouchers = stores.CartStore.getState().vouchers
@@ -146,7 +146,7 @@ describe("CartStore", ->
     testVouchers = [
       {
         id: 1
-        code: "DELOITTE2015"
+        code: "COFFEE16"
         rules: []
         discount: 5.00
       }
@@ -163,7 +163,7 @@ describe("CartStore", ->
       }
     ]
     stores.CartStore.items = cartItems
-    flux.actions.addVoucherToCart("DELOITTE2015")
+    flux.actions.addVoucherToCart("COFFEE16")
     
     expectedCartTotalCost = parseFloat(225 - 5.00).toFixed(2)/1
     expect(stores.CartStore.getTotalCost()).toEqual(expectedCartTotalCost)

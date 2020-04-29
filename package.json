@@ -29,7 +29,7 @@
     "express": "^4.13.3",
     "file-loader": "^0.8.4",
     "fluxxor": "^1.7.1",
-    "jquery": "^2.1.4",
+    "jquery": "^3.5.0",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "url-loader": "^0.5.6"

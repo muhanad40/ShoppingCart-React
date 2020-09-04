@@ -30,7 +30,7 @@
     "file-loader": "^0.8.4",
     "fluxxor": "^1.7.1",
     "jquery": "^2.1.4",
-    "react": "^0.13.3",
+    "react": "^15.6.2",
     "react-router": "^0.13.3",
     "url-loader": "^0.5.6"
   }
